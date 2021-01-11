@@ -1,6 +1,6 @@
 ---
-slug: "/blog/something"
-date: "10-01-2021"
+slug: "something"
+date: "09-01-2021"
 title: "Something about"
 excerpt: "my excerpt..."
 ---

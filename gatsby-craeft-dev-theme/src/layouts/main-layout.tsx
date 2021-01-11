@@ -20,13 +20,13 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         <body className={`${theme}-theme`}></body>
       </Helmet>
       <Header />
-      <div className="container">
+      <main className="container">
         <br />
         <br />
         <section>
           <MDXProvider components={{}}>{children}</MDXProvider>
         </section>
-      </div>
+      </main>
     </>
   );
 };

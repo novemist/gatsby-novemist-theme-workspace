@@ -1,11 +1,17 @@
+const POSTS_SLUG_PREFIX = "/blog";
+
 const CONTENT_PATHS = {
-  site: "src/content/site",
-  posts: "src/content/posts",
+  site: `src/site`,
+  images: `src/images`,
+  posts: `src/content${POSTS_SLUG_PREFIX}`,
 };
+
 const CONTENT_NAMES = {
-  site: "content",
+  site: "site",
   posts: "posts",
+  images: "images",
 };
+
 const CONTENT_REQUIRED_FILES = {
   site: {
     greeting: {
@@ -23,4 +29,5 @@ module.exports = {
   CONTENT_PATHS,
   CONTENT_NAMES,
   CONTENT_REQUIRED_FILES,
+  POSTS_SLUG_PREFIX,
 };

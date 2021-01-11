@@ -20,7 +20,12 @@ export const Navbar = ({
   return (
     <nav className={styles[theme]}>
       {items.map(({ to, title }) => (
-        <NavLink key={to} to={to} isActive={to === currentPath} theme={theme}>
+        <NavLink
+          key={to}
+          to={to}
+          isActive={to === "/" ? currentPath === to : currentPath.includes(to)}
+          theme={theme}
+        >
           {title}
         </NavLink>
       ))}

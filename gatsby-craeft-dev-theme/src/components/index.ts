@@ -4,4 +4,5 @@ export { InfoCard } from "./InfoCard";
 export { Navbar } from "./Navbar";
 export { NavLink } from "./NavLink";
 export { PostsList } from "./PostsList";
+export { PostCard } from "./PostCard";
 export { TextContent } from "./TextContent";
