@@ -1,11 +1,23 @@
 import React from "react";
-import Helmet from "react-helmet";
 import { MDXProvider } from "@mdx-js/react";
+import { graphql, useStaticQuery } from "gatsby";
 
 import { Header } from "./Header";
+import { SEO } from "./Seo";
+
 import { useTheme } from "../core";
 
 import "../../styles/main.css";
+
+const query = graphql`
+  query MainLayoutSEO {
+    site {
+      siteMetadata {
+        logoTitle
+      }
+    }
+  }
+`;
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -13,13 +25,18 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   const { theme } = useTheme();
+  const { site } = useStaticQuery<{
+    site: {
+      siteMetadata: {
+        logoTitle: string;
+      };
+    };
+  }>(query);
 
   return (
     <>
-      <Helmet>
-        <body className={`${theme}-theme`}></body>
-      </Helmet>
-      <Header />
+      <SEO theme={theme} />
+      <Header logoTitle={site.siteMetadata.logoTitle} />
       <main className="container">
         <br />
         <br />

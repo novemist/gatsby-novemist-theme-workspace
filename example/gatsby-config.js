@@ -1,3 +1,41 @@
 module.exports = {
-  plugins: ["gatsby-plugin-ts-config", "gatsby-craeft-dev-theme"],
+  siteMetadata: {
+    logoTitle: "craeft.dev",
+    title: "craeft.dev 🦉",
+    titleTemplate: "%s | craeft.dev 🦉",
+    description:
+      "Elit dolore enim exercitation aliquip commodo ex sit do aliquip incididunt adipisicing velit amet.",
+    url: "https://localhost:8000",
+    image: "",
+    twitterUsername: "@w1zm8",
+    nav: [
+      { path: "/", name: "Home" },
+      { path: "/blog", name: "Blog" },
+      { path: "/about", name: "About" },
+      { path: "/contact", name: "Contact" },
+      // {
+      //   path: "https://twitter.com/w1zm8",
+      //   name: "Twitter",
+      // },
+      // {
+      //   path: "https://github.com/w1zm8",
+      //   name: "GitHub",
+      // },
+    ],
+    copyright: "© craeft.dev 2020",
+  },
+  plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `craeft.dev blog`,
+        short_name: `craeft.dev`,
+        start_url: `/`,
+        icon: `src/images/favicon.png`,
+        display: `standalone`,
+      },
+    },
+    "gatsby-plugin-ts-config",
+    "gatsby-craeft-dev-theme",
+  ],
 };

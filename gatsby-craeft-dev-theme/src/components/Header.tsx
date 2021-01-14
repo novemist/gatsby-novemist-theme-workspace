@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "@reach/router";
+import { graphql, useStaticQuery } from "gatsby";
 
 import { Navbar } from "./Navbar";
 import { Logo } from "./Logo";
@@ -8,36 +9,39 @@ import { useTheme } from "../core";
 
 import headerStyles from "../../styles/header.module.css";
 
-export const Header = () => {
+const query = graphql`
+  query HeaderQuery {
+    site {
+      siteMetadata {
+        nav {
+          path
+          name
+        }
+      }
+    }
+  }
+`;
+
+interface HeaderProps {
+  logoTitle: string;
+}
+
+export const Header = ({ logoTitle }: HeaderProps) => {
   const { theme, toggleTheme } = useTheme();
   const { pathname } = useLocation();
-
-  const navItems = [
-    {
-      to: "/",
-      title: "Home",
+  const {
+    site: {
+      siteMetadata: { nav },
     },
-    {
-      to: "/blog",
-      title: "Blog",
-    },
-    {
-      to: "/about",
-      title: "About",
-    },
-    {
-      to: "/contact",
-      title: "Contact",
-    },
-  ];
+  } = useStaticQuery(query);
 
   return (
     <header className={headerStyles[theme]}>
       <div className="container">
         <div className={headerStyles.inner}>
-          <Logo theme={theme} />
+          <Logo title={logoTitle} theme={theme} />
           <div className={headerStyles.row}>
-            <Navbar items={navItems} currentPath={pathname} theme={theme} />
+            <Navbar items={nav} currentPath={pathname} theme={theme} />
             <ThemeSwitcher theme={theme} onToggle={toggleTheme} />
           </div>
         </div>

@@ -9,7 +9,7 @@ import styles from "../../styles/navbar.module.css";
 interface NavbarProps {
   theme?: ThemeValue;
   currentPath?: string;
-  items: { to: string; title: string }[];
+  items: { path: string; name: string }[];
 }
 
 export const Navbar = ({
@@ -19,14 +19,16 @@ export const Navbar = ({
 }: NavbarProps) => {
   return (
     <nav className={styles[theme]}>
-      {items.map(({ to, title }) => (
+      {items.map(({ name, path }) => (
         <NavLink
-          key={to}
-          to={to}
-          isActive={to === "/" ? currentPath === to : currentPath.includes(to)}
+          key={path}
+          to={path}
+          isActive={
+            path === "/" ? currentPath === path : currentPath.includes(path)
+          }
           theme={theme}
         >
-          {title}
+          {name}
         </NavLink>
       ))}
     </nav>

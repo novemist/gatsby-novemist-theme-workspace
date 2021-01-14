@@ -1,21 +1,25 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
-import { FluidObject } from "gatsby-image";
+import { FixedObject, FluidObject } from "gatsby-image";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
 import MainLayout from "./MainLayout";
 import { PostInfo } from "./PostInfo";
 import { PostTags } from "./PostTags";
 import { TextContent } from "./TextContent";
+import { SEO } from "./Seo";
+
 import { useTheme } from "../core";
 
 interface DataType {
   mdx: {
+    excerpt: string;
     frontmatter: {
       date: string;
       image: {
         childImageSharp: {
           fluid: FluidObject;
+          fixed: FixedObject;
         };
       };
       title: string;
@@ -26,13 +30,19 @@ interface DataType {
 
 const PostLayout = ({
   data: {
-    mdx: { frontmatter, body },
+    mdx: { frontmatter, body, excerpt },
   },
 }: PageProps<DataType>) => {
   const { theme } = useTheme();
 
   return (
     <MainLayout>
+      <SEO
+        theme={theme}
+        image={frontmatter.image.childImageSharp.fixed.src}
+        title={frontmatter.title}
+        description={excerpt}
+      />
       <article>
         <TextContent
           theme={theme}
@@ -60,6 +70,7 @@ const PostLayout = ({
 export const query = graphql`
   query PostPage($id: String!) {
     mdx(id: { eq: $id }) {
+      excerpt
       frontmatter {
         title
         date
@@ -67,6 +78,9 @@ export const query = graphql`
           childImageSharp {
             fluid(maxWidth: 1200) {
               ...GatsbyImageSharpFluid
+            }
+            fixed {
+              src
             }
           }
         }

@@ -10,3 +10,17 @@ export interface Post {
   image: FluidObject;
   excerpt: string;
 }
+
+export interface SiteQueryData {
+  site: {
+    siteMetadata: {
+      defaultTitle: string;
+      titleTemplate: string;
+      defaultDescription: string;
+      siteUrl: string;
+      defaultImage: string;
+      twitterUsername: string;
+      logoTitle: string;
+    };
+  };
+}

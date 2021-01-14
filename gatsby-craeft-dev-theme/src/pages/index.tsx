@@ -1,5 +1,5 @@
 import React from "react";
-import { PageProps, graphql } from "gatsby";
+import { PageProps, graphql, Link } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { FluidObject } from "gatsby-image";
 
@@ -51,6 +51,11 @@ const IndexPage = (props: PageProps<DataType>) => {
         <h2 className="latest-posts">Latest posts</h2>
       </header>
       <PostsList posts={posts} />
+      <h3 className="text-center monospace">
+        <Link to="/blog" className="underline theme-link">
+          see all posts
+        </Link>
+      </h3>
     </MainLayout>
   );
 };
@@ -61,7 +66,7 @@ export const query = graphql`
       body
     }
     allMdx(
-      limit: 7
+      limit: 6
       filter: { fileAbsolutePath: { regex: "/content/blog/" } }
       sort: { fields: frontmatter___date, order: DESC }
     ) {
