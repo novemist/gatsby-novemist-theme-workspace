@@ -16,7 +16,7 @@ const AboutPage = ({ data }: PageProps<DataType>) => {
   const { theme } = useTheme();
 
   return (
-    <MainLayout>
+    <MainLayout title="About">
       <TextContent theme={theme}>
         {data.mdx && <MDXRenderer>{data.mdx.body}</MDXRenderer>}
       </TextContent>

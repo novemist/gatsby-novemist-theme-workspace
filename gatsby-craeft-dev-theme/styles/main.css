@@ -8,6 +8,13 @@ body {
   line-height: 1.5;
 }
 
+.avatar-wrapper {
+  max-width: 180px;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 /* ------------------ Light Theme ------------------ */
 
 body.light-theme {

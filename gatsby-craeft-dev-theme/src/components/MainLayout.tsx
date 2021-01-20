@@ -44,9 +44,10 @@ interface MainLayoutQuery {
 
 interface MainLayoutProps {
   children?: React.ReactNode;
+  title?: string;
 }
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout = ({ children, title }: MainLayoutProps) => {
   const { theme } = useTheme();
   const {
     site: { siteMetadata },
@@ -54,7 +55,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <>
-      <SEO theme={theme} />
+      <SEO theme={theme} title={title} />
       <Header logoTitle={siteMetadata.logoTitle} navItems={siteMetadata.nav} />
       <Container>
         <br />

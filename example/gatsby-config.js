@@ -22,6 +22,7 @@ module.exports = {
       { path: "https://twitter.com/w1zm8", name: "Twitter" },
       { path: "https://github.com/w1zm8", name: "GitHub" },
     ],
+    avatarSrc: "./static/images/avatar.jpg",
   },
   plugins: [
     {
@@ -30,7 +31,7 @@ module.exports = {
         name: `craeft.dev blog`,
         short_name: `craeft.dev`,
         start_url: `/`,
-        icon: `src/images/favicon.png`,
+        icon: "./static/images/favicon.png",
         display: `standalone`,
       },
     },

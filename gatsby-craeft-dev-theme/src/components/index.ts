@@ -16,7 +16,7 @@ export { Container } from "./Container";
 export { PageGrid } from "./PageGrid";
 export { SidePanel } from "./SidePanel";
 export { TagsBlock } from "./TagsBlock";
-export { GridViewSwitcher } from "./GridViewSwitcher";
 export { PostsListHeader } from "./PostsListHeader";
+
 export { default as MainLayout } from "./MainLayout";
 export { default as PostLayout } from "./PostLayout";

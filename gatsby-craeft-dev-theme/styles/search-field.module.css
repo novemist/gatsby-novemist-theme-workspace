@@ -1,0 +1,8 @@
+.field {
+  width: 40%;
+  text-align: right;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 5px 17px;
+}

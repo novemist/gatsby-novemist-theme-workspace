@@ -53,6 +53,8 @@ const PostLayout = ({
           <PostInfo date={frontmatter.date} commentsCount={5} />
           <h1>{frontmatter.title}</h1>
           {body && <MDXRenderer>{body}</MDXRenderer>}
+          {/* See also (list of related posts) */}
+          {/* Comments */}
         </TextContent>
       </article>
     </MainLayout>

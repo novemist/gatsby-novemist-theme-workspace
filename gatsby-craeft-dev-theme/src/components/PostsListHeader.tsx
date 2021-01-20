@@ -1,32 +1,26 @@
-import React from "react";
-import { GridViewValue, ThemeValue } from "../types";
+import React, { CSSProperties } from "react";
+import { ThemeValue } from "../types";
 
-import { GridViewSwitcher } from "./GridViewSwitcher";
 import { PageTitle } from "./PageTitle";
+import { SearchField } from "./SearchField";
 
 import styles from "../../styles/posts-list-header.module.css";
 
 interface PostsListHeaderProps {
   theme: ThemeValue;
-  gridView: GridViewValue;
-  toggleGridView(): void;
   title: string;
+  style?: CSSProperties;
 }
 
 export const PostsListHeader = ({
   theme,
-  gridView,
-  toggleGridView,
   title,
+  style,
 }: PostsListHeaderProps) => {
   return (
-    <header className={styles[theme]}>
+    <header className={styles[theme]} style={style}>
       <PageTitle theme={theme}>{title}</PageTitle>
-      <GridViewSwitcher
-        theme={theme}
-        gridView={gridView}
-        toggleGridView={toggleGridView}
-      />
+      {/* <SearchField /> */}
     </header>
   );
 };

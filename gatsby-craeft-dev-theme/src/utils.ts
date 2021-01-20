@@ -69,18 +69,21 @@ export const getInitialThemeValue = () => {
   return initialTheme;
 };
 
-export const getInitialGridViewValue = () => {
-  let initialTheme: GridViewValue = "row";
+export const getInitialGridViewValue = (
+  key: string,
+  initialTheme: GridViewValue = "row"
+) => {
+  let theme: GridViewValue = initialTheme;
 
   try {
     const settedGridView = localStorage.getItem(
-      STORAGE_GRID_VIEW_KEY
+      `${STORAGE_GRID_VIEW_KEY}_${key}`
     ) as GridViewValue | null;
 
     if (settedGridView) {
-      initialTheme = settedGridView;
+      theme = settedGridView;
     }
   } catch (e) {}
 
-  return initialTheme;
+  return theme;
 };

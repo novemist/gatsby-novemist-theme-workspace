@@ -1,21 +1,16 @@
 import React from "react";
-import { PageProps, graphql, Link } from "gatsby";
-import { MDXRenderer } from "gatsby-plugin-mdx";
+import { PageProps, graphql } from "gatsby";
 
 import {
   PageGrid,
   MainLayout,
   PostsList,
-  InfoCard,
-  TagsBlock,
-  SidePanel,
   PostsSection,
   PostsListHeader,
 } from "../components";
 import { PostEdge } from "../types";
 import { useTheme } from "../core";
 import { getMappedPosts, getTagsFromPosts } from "../utils";
-import { MAX_POSTS_COUNT_HOME_PAGE } from "../constants";
 
 interface DataType {
   mdx: {
@@ -25,46 +20,40 @@ interface DataType {
     edges: PostEdge[];
     totalCount: number;
   };
-  site: {
-    siteMetadata: {
-      avatarSrc: any;
-    };
-  };
 }
 
-const IndexPage = ({ data: { allMdx, mdx } }: PageProps<DataType>) => {
+const BlogPage = ({ data: { allMdx, mdx } }: PageProps<DataType>) => {
   const { theme } = useTheme();
 
   const posts = getMappedPosts(allMdx.edges);
   const tags = getTagsFromPosts(allMdx.edges);
 
   return (
-    <MainLayout>
-      <PostsListHeader title="Latest Posts" theme={theme} />
+    <MainLayout title="Blog">
+      <PostsListHeader
+        title="Blog"
+        theme={theme}
+        style={{
+          width: "100%",
+        }}
+      />
       <PageGrid>
-        <PostsSection>
-          <PostsList posts={posts} gridView="row" />
-          {allMdx.totalCount > MAX_POSTS_COUNT_HOME_PAGE && (
-            <h3 className="text-center monospace">
-              <Link to="/blog" className="underline theme-link">
-                view all
-              </Link>
-            </h3>
-          )}
+        <PostsSection style={{ width: "100%" }}>
+          <PostsList posts={posts} gridView="tile" />
         </PostsSection>
-        <SidePanel>
+        {/* <SidePanel>
           <InfoCard theme={theme}>
             {mdx ? <MDXRenderer>{mdx.body}</MDXRenderer> : null}
           </InfoCard>
           <TagsBlock theme={theme} tags={tags} />
-        </SidePanel>
+        </SidePanel> */}
       </PageGrid>
     </MainLayout>
   );
 };
 
 export const query = graphql`
-  query HomePage {
+  query BlogPage {
     mdx(frontmatter: { key: { eq: "short-about" } }) {
       body
     }
@@ -99,4 +88,4 @@ export const query = graphql`
   }
 `;
 
-export default IndexPage;
+export default BlogPage;
