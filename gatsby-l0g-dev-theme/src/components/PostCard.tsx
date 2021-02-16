@@ -6,13 +6,14 @@ import { GridViewValue, Post } from "../types";
 import { useTheme } from "../core";
 
 import { PostCardTitle } from "./PostCardTitle";
-import PostCardExcerpt from "./PostCardExcerpt";
+import PostCardExcerpt, { VARIANT } from "./PostCardExcerpt";
 import { PostTags } from "./PostTags";
 import { PostInfo } from "./PostInfo";
 
 import { MAX_TAGS_COUNT } from "../constants";
 
 import { StyleModules } from "../style-modules";
+import { capitalize } from "../utils";
 
 const styles = StyleModules.postCard;
 
@@ -32,11 +33,12 @@ export const PostCard = ({
   view = "tile",
 }: PostCardProps) => {
   const { theme } = useTheme();
+  const styleName = `${view}${capitalize(theme)}`;
 
   const commentsCount = Math.floor(Math.random() * Math.floor(10));
 
   return (
-    <article className={styles[view]}>
+    <article className={styles[styleName]}>
       {image && (
         <Link className={styles.thumbnail} to={to}>
           {<Img className={styles.thumbnailInner} fluid={image}></Img>}
@@ -50,7 +52,12 @@ export const PostCard = ({
           </PostCardTitle>
         </header>
         <section className={styles.excerpt}>
-          <PostCardExcerpt theme={theme}>{excerpt}</PostCardExcerpt>
+          <PostCardExcerpt
+            theme={theme}
+            variant={view === "row" ? VARIANT.second : VARIANT.first}
+          >
+            {excerpt}
+          </PostCardExcerpt>
         </section>
         <footer>
           <PostInfo date={date} commentsCount={commentsCount} postLink={to} />

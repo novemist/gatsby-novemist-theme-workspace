@@ -13,17 +13,38 @@
   composes: card;
   flex: 1 1 calc(100% - 30px);
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  flex-direction: row-reverse;
+  padding: 15px 15px;
+  border-radius: 4px;
+}
+
+.tile-light {
+  composes: tile;
+}
+
+.tile-dark {
+  composes: tile;
+}
+
+.row-light {
+  composes: row;
+  background: #e9ecef;
+}
+
+.row-dark {
+  composes: row;
+  background: #37373a;
 }
 
 .row .thumbnail {
-  flex: 1 1 45%;
+  height: 175px;
+  margin-top: 10px;
+  flex: 1 1 35%;
+  margin-left: 35px;
 }
 
 .row .content {
-  flex: 1 1 55%;
-  margin-left: 35px;
+  flex: 1 1 65%;
 }
 
 .header {
@@ -34,10 +55,6 @@
 
 .row .header {
   flex-direction: column-reverse;
-}
-
-.row .thumbnail {
-  height: 220px;
 }
 
 .thumbnail {
@@ -72,6 +89,7 @@
   .row .thumbnail {
     width: 100%;
     height: 200px;
+    margin-left: 0px;
   }
 
   .row .content {

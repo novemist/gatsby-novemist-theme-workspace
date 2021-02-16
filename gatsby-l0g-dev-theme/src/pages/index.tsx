@@ -33,25 +33,33 @@ const IndexPage = ({ data: { allMdx } }: PageProps<DataType>) => {
 
   return (
     <MainLayout>
-      <PostsListHeader title="Feed" theme={theme} />
-      <PageGrid>
-        <PostsSection>
-          <PostsList posts={allMdx.edges} gridView="row" />
-          {allMdx.totalCount > MAX_POSTS_COUNT_HOME_PAGE && (
-            <h3 className="text-center monospace">
-              <Link
-                to={PAGES_ROUTES.blog.index}
-                className="underline theme-link"
-              >
-                view all
-              </Link>
-            </h3>
-          )}
-        </PostsSection>
-        <SidePanel>
-          <TagsBlock theme={theme} tags={tags} />
-        </SidePanel>
-      </PageGrid>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+        }}
+      >
+        <PostsListHeader title="Feed" theme={theme} />
+        <PageGrid>
+          <PostsSection>
+            <PostsList posts={allMdx.edges} gridView="row" />
+            {allMdx.totalCount > MAX_POSTS_COUNT_HOME_PAGE && (
+              <h3 className="text-center monospace">
+                <Link
+                  to={PAGES_ROUTES.blog.index}
+                  className="underline theme-link"
+                >
+                  view all
+                </Link>
+              </h3>
+            )}
+          </PostsSection>
+          <SidePanel>
+            <TagsBlock theme={theme} tags={tags} />
+          </SidePanel>
+        </PageGrid>
+      </div>
     </MainLayout>
   );
 };

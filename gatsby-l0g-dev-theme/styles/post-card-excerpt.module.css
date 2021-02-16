@@ -12,12 +12,22 @@
   font-family: "Roboto";
 }
 
-.light {
+.light-first {
   composes: excerpt;
   background: var(--theme-light-post-excerpt-bg-color);
 }
 
-.dark {
+.dark-first {
   composes: excerpt;
   background: var(--theme-dark-post-excerpt-bg-color);
+}
+
+.light-second {
+  composes: excerpt;
+  background: #dadada;
+}
+
+.dark-second {
+  composes: excerpt;
+  background: #2a2b2d;
 }
