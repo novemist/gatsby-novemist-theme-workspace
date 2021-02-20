@@ -18,7 +18,7 @@ export interface SiteQueryData {
   site: {
     siteMetadata: {
       titleTemplate: string;
-      url: string;
+      siteUrl: string;
       twitterUsername: string;
     };
   };
@@ -28,7 +28,7 @@ const query = graphql`
   query PostShareButtons {
     site {
       siteMetadata {
-        url
+        siteUrl
         titleTemplate
         twitterUsername
       }
@@ -44,7 +44,7 @@ export const PostShareButtons: FC<PostShareButtonsProps> = ({
     site: { siteMetadata },
   } = useStaticQuery<SiteQueryData>(query);
 
-  const url = `${siteMetadata.url}${postUrl}`;
+  const url = `${siteMetadata.siteUrl}${postUrl}`;
   const title = siteMetadata.titleTemplate.replace("%s", postTitle);
 
   return (
