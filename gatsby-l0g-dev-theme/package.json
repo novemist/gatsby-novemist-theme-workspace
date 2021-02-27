@@ -28,6 +28,7 @@
     "gatsby-plugin-page-creator": "^2.8.0",
     "gatsby-plugin-sharp": "^2.12.0",
     "gatsby-plugin-sitemap": "^2.12.0",
+    "gatsby-plugin-social-cards": "^0.5.17",
     "gatsby-plugin-ts-config": "^1.1.5",
     "gatsby-remark-images": "^3.9.0",
     "gatsby-source-filesystem": "^2.9.0",

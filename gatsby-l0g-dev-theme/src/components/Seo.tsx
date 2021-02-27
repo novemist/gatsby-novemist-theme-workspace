@@ -88,8 +88,12 @@ export const SEO = ({
 
       {seo.image && <meta name="image" content={seo.image} />}
       {seo.image && <meta property="og:image" content={seo.image} />}
-      {metaImage && <meta name="og:image:width" content={metaImage.width} />}
-      {metaImage && <meta name="og:image:height" content={metaImage.height} />}
+      {metaImage && (
+        <meta property="og:image:width" content={metaImage.width} />
+      )}
+      {metaImage && (
+        <meta property="og:image:height" content={metaImage.height} />
+      )}
 
       {/* <Twitter> */}
       <meta name="twitter:card" content="summary_large_image" />

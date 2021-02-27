@@ -60,6 +60,7 @@ module.exports = {
     },
     "gatsby-plugin-sitemap",
     "gatsby-plugin-catch-links",
+    "gatsby-plugin-social-cards",
     // {
     //   resolve: `gatsby-plugin-feed`,
     //   options: {
