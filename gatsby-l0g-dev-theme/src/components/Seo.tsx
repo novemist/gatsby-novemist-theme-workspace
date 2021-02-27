@@ -77,6 +77,7 @@ export const SEO = ({
       titleTemplate={pathname === "/" ? seo.title : titleTemplate}
     >
       <meta name="description" content={seo.description} />
+      <meta name="image" content={seo.image} />
       {seo.url && <meta property="og:url" content={seo.url} />}
       {isArticle && <meta property="og:type" content="website" />}
       {seo.title && <meta property="og:title" content={seo.title} />}
@@ -85,8 +86,6 @@ export const SEO = ({
       )}
       {canonical && <link rel="canonical" href={canonical} />}
       <meta name="keywords" content={keywordsStr.join(",")} />
-
-      {seo.image && <meta name="image" content={seo.image} />}
       {seo.image && <meta property="og:image" content={seo.image} />}
       {metaImage && (
         <meta property="og:image:width" content={metaImage.width} />
