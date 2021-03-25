@@ -33,6 +33,7 @@ interface SEOProps {
   isArticle?: boolean;
   theme?: ThemeValue;
   keywords?: string[];
+  isHomePage?: boolean;
 }
 
 export const SEO = ({
@@ -42,6 +43,7 @@ export const SEO = ({
   isArticle = false,
   theme = DEFAULT_THEME,
   keywords,
+  isHomePage = false,
 }: SEOProps) => {
   const { pathname } = useLocation();
   const { site } = useStaticQuery<SiteQueryData>(query);
@@ -71,7 +73,7 @@ export const SEO = ({
   return (
     <Helmet
       title={seo.title}
-      titleTemplate={pathname === "/" ? seo.title : titleTemplate}
+      titleTemplate={isHomePage ? seo.title : titleTemplate}
     >
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
