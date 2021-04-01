@@ -61,10 +61,7 @@ const query = graphql`
     allMdx(
       filter: {
         fileAbsolutePath: { regex: "/content/" }
-        frontmatter: {
-          public: { in: true }
-          type: { regex: "/(blog|post|link)/" }
-        }
+        frontmatter: { public: { in: true } }
       }
       sort: { fields: frontmatter___date, order: DESC }
     ) {

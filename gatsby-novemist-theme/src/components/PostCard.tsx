@@ -33,7 +33,13 @@ export const PostCard = ({
 }: PostCardProps) => {
   const { theme } = useTheme();
   const styleName = `${view}${capitalize(theme)}`;
-  const to = type ? `${RESOURCES_TYPE_ROUTE[type]}/${slug}` : "/";
+  let to = "/";
+
+  if (type === null || type === "note") {
+    to = `${RESOURCES_TYPE_ROUTE.note}/${slug}`;
+  } else {
+    to = `${RESOURCES_TYPE_ROUTE[type]}/${slug}`;
+  }
 
   return (
     <article className={styles[styleName]}>

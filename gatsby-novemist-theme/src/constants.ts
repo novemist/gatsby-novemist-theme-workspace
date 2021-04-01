@@ -38,6 +38,7 @@ export const PAGES_ROUTES = {
   },
   notes: {
     index: "/notes",
+    post: "/notes",
   },
 };
 
@@ -45,6 +46,7 @@ export const RESOURCES_TYPE_ROUTE = {
   blog: PAGES_ROUTES.blog.article,
   post: PAGES_ROUTES.feed.post,
   link: PAGES_ROUTES.feed.post,
+  note: PAGES_ROUTES.notes.post,
 };
 
 export const HOME_PAGES_TYPE_ROUTE = {

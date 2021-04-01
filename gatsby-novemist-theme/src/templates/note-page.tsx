@@ -7,6 +7,7 @@ import {
   Container,
   GoBackTo,
   MainLayout,
+  PostTags,
   SEO,
   TextContent,
 } from "../components";
@@ -15,6 +16,9 @@ import { PAGES_ROUTES } from "../constants";
 interface DataType {
   mdx: {
     body: string;
+    frontmatter: {
+      tags: [] | null;
+    };
   };
 }
 
@@ -29,7 +33,6 @@ const NotePage: FC<PageProps<DataType, PageContextType>> = ({
   const { theme } = useTheme();
   const { mdx } = data;
   const { title } = pageContext;
-  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   return (
@@ -56,6 +59,10 @@ const NotePage: FC<PageProps<DataType, PageContextType>> = ({
             </GoBackTo>
           )}
           <TextContent theme={theme}>
+            <header>
+              <PostTags tags={mdx.frontmatter.tags || []} />
+              <hr />
+            </header>
             <MDXRenderer>{mdx.body}</MDXRenderer>
           </TextContent>
         </article>
@@ -70,6 +77,9 @@ export const query = graphql`
   query($slug: String!) {
     mdx(slug: { eq: $slug }) {
       body
+      frontmatter {
+        tags
+      }
     }
   }
 `;

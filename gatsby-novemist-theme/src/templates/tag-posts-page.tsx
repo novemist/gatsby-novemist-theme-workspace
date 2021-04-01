@@ -38,6 +38,8 @@ const TagPostsPage = ({
 }: PageProps<DataType, PageContextValue>) => {
   const { theme } = useTheme();
 
+  console.log(allMdx.edges);
+
   return (
     <MainLayout title="Tags">
       <br />
@@ -76,17 +78,14 @@ export const query = graphql`
       skip: $skip
       filter: {
         fileAbsolutePath: { regex: "/content/" }
-        frontmatter: {
-          public: { in: true }
-          tags: { in: [$tag] }
-          type: { regex: "/(blog|post|link)/" }
-        }
+        frontmatter: { public: { in: true }, tags: { in: [$tag] } }
       }
       sort: { fields: frontmatter___date, order: DESC }
     ) {
       edges {
         node {
           excerpt
+          slug
           frontmatter {
             type
             title

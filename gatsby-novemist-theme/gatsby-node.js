@@ -191,10 +191,7 @@ const createPages = async ({ graphql, actions, reporter }) => {
       allMdx(
         filter: {
           fileAbsolutePath: { regex: "/content/" }
-          frontmatter: {
-            public: { in: true }
-            type: { regex: "/(blog|post|link)/" }
-          }
+          frontmatter: { public: { in: true } }
         }
         sort: { fields: frontmatter___date, order: ASC }
       ) {
@@ -218,7 +215,12 @@ const createPages = async ({ graphql, actions, reporter }) => {
     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
   }
 
-  const allPosts = postsResult.data.allMdx.edges;
+  const allResources = postsResult.data.allMdx.edges;
+  const allPosts = allResources.filter(
+    ({ node }) =>
+      node.frontmatter.type !== null &&
+      node.frontmatter.type !== POST_TYPES.note
+  );
   const blogPosts = allPosts.filter(
     ({ node }) => node.frontmatter.type === POST_TYPES.blog
   );
@@ -258,7 +260,7 @@ const createPages = async ({ graphql, actions, reporter }) => {
 
   // ------------ CREATING PAGE FOR ALL TAGS ------------
 
-  const allTags = getTagsFromPosts(allPosts);
+  const allTags = getTagsFromPosts(allResources);
   const tagPostsCount = getTagsCount(allTags);
   const tags = Array.from(new Set(allTags).values());
 
@@ -365,11 +367,13 @@ const createPages = async ({ graphql, actions, reporter }) => {
       return;
     }
 
+    const slug = node.childMdx.slug;
+
     createPage({
-      path: `${PAGES_ROUTES.notes.index}/${node.childMdx.slug}`,
+      path: `${PAGES_ROUTES.notes.index}/${slug}`,
       component: TEMPLATES.notePage,
       context: {
-        slug: node.childMdx.slug,
+        slug,
         title: node.childMdx.frontmatter.title,
       },
     });

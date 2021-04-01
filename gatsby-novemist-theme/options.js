@@ -77,6 +77,7 @@ const POST_TYPES = {
   blog: "blog",
   post: "post",
   link: "link",
+  note: "note",
 };
 
 const RELATED_POSTS_COUNT = 1;

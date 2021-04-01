@@ -1,9 +1,9 @@
 import { Post, PostEdge } from "../types";
 
 export const getMappedPosts = (posts: PostEdge[]): Post[] =>
-  posts.map(({ node: { excerpt, frontmatter } }) => ({
+  posts.map(({ node: { excerpt, frontmatter, slug } }) => ({
     title: frontmatter.title,
-    slug: frontmatter.slug,
+    slug: frontmatter.slug ?? slug,
     date: frontmatter.date,
     tags: frontmatter.tags || [],
     image: frontmatter.image?.childImageSharp?.fluid,
