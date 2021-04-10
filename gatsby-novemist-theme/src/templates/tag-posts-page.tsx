@@ -38,8 +38,6 @@ const TagPostsPage = ({
 }: PageProps<DataType, PageContextValue>) => {
   const { theme } = useTheme();
 
-  console.log(allMdx.edges);
-
   return (
     <MainLayout title="Tags">
       <br />

@@ -10,7 +10,7 @@ export type PostType = "post" | "blog" | "link" | "note";
 export interface Post {
   title: string;
   slug: string;
-  date: string;
+  date: string | null;
   image: FluidObject;
   excerpt: string;
   tags: string[];

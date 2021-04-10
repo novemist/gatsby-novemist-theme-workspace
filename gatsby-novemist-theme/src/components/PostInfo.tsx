@@ -8,7 +8,7 @@ import { StyleModules } from "../style-modules";
 const styles = StyleModules.postInfo;
 
 interface PostInfoProps {
-  date: string;
+  date: string | null;
   // commentsCount: number;
   // postLink?: string;
 }
@@ -20,7 +20,7 @@ export const PostInfo = ({
 PostInfoProps) => {
   return (
     <div className={styles.info}>
-      <time dateTime={date}>{getFormattedDateString(date)}</time>
+      {date && <time dateTime={date}>{getFormattedDateString(date)}</time>}
       {/* <span> | </span> */}
       {/* <Link to={`${postLink}#comments`}>{`${commentsCount} ${
         commentsCount === 1 ? "comment" : "comments"

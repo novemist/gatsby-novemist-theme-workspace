@@ -42,7 +42,7 @@ export const useUtterancesComments = ({
 
       commentBlockRef.current.appendChild(scriptTag);
     } else {
-      console.log(`Error: ${commentBlockRef} does not exist.`);
+      console.error(`Error: ${commentBlockRef} does not exist.`);
     }
   };
 
