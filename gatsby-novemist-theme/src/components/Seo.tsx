@@ -34,6 +34,7 @@ interface SEOProps {
   theme?: ThemeValue;
   keywords?: string[] | null;
   isHomePage?: boolean;
+  isBodyDarker?: boolean;
 }
 
 export const SEO = ({
@@ -44,6 +45,7 @@ export const SEO = ({
   theme = DEFAULT_THEME,
   keywords,
   isHomePage = false,
+  isBodyDarker = false,
 }: SEOProps) => {
   const { pathname } = useLocation();
   const { site } = useStaticQuery<SiteQueryData>(query);
@@ -71,6 +73,8 @@ export const SEO = ({
   const metaTitle = isHomePage
     ? seo.title
     : titleTemplate.replace("%s", seo.title);
+
+  const bodyDarkerClassName = isBodyDarker ? "darker" : "";
 
   return (
     <Helmet
@@ -105,7 +109,7 @@ export const SEO = ({
       <meta name="twitter:image" content={seo.image} />
       {/* <Twitter /> */}
 
-      <body className={`${theme}-theme`}></body>
+      <body className={`${theme}-theme ${bodyDarkerClassName}`}></body>
     </Helmet>
   );
 };

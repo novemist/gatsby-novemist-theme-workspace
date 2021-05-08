@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { CSSProperties } from "react";
 import { DEFAULT_THEME } from "../constants";
 import { ThemeValue } from "../types";
 
@@ -23,6 +23,7 @@ interface GoBackToMainProps {
   children: string;
   direction?: "left" | "right";
   theme?: ThemeValue;
+  style?: CSSProperties;
 }
 
 type GoBackToProps = GoBackToMainProps & GoBackToTypeProps;
@@ -31,6 +32,7 @@ export const GoBackTo = ({
   children,
   direction = "left",
   theme = DEFAULT_THEME,
+  style = {},
   ...props
 }: GoBackToProps) => {
   const view = (
@@ -50,7 +52,7 @@ export const GoBackTo = ({
   );
 
   return (
-    <div className={styles[theme]}>
+    <div className={styles[theme]} style={style}>
       {props.type === "link" ? (
         <Link to={props.to} className={styles[direction]}>
           {view}

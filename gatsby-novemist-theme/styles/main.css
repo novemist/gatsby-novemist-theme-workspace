@@ -55,3 +55,7 @@ body.dark-theme {
 body.dark-theme .theme-link {
   color: var(--theme-dark-second-text-color);
 }
+
+body.darker {
+  background-color: #212223;
+}

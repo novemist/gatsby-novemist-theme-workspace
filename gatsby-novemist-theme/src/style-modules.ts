@@ -30,6 +30,7 @@ import * as sidePanel from "../styles/side-panel.module.css";
 import * as socialsBlock from "../styles/socials-block.module.css";
 import * as subscribingBlock from "../styles/subscribing-block.module.css";
 import * as subscribing from "../styles/subscribing.module.css";
+import * as subscriptionPage from "../styles/subscription-page.module.css";
 import * as table from "../styles/table.module.css";
 import * as textContent from "../styles/text-content.module.css";
 import * as themeSwitcher from "../styles/theme-switcher.module.css";
@@ -67,6 +68,7 @@ export const StyleModules = {
   socialsBlock,
   subscribingBlock,
   subscribing,
+  subscriptionPage,
   table,
   textContent,
   themeSwitcher,

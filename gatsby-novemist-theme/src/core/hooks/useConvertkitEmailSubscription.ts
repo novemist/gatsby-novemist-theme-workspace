@@ -23,7 +23,9 @@ export const useConvertkitEmailSubscription = ({
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
     const data = new FormData(e.target);
+
     try {
       const response = await fetch(FORM_URL, {
         method: "post",
@@ -34,6 +36,7 @@ export const useConvertkitEmailSubscription = ({
       });
       setEmail("");
       const json = await response.json();
+
       if (json.status === "success") {
         setStatus(STATUS_SUCCESS);
         return;

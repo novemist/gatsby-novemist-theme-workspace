@@ -392,6 +392,15 @@ const createPages = async ({ graphql, actions, reporter }) => {
       },
     });
   });
+
+  // ------------ CREATING SUBSCRIPTION PAGE ------------
+  createPage({
+    path: PAGES_ROUTES.subscribe.index,
+    component: TEMPLATES.subscriptionPage,
+    context: {
+      convertkitEndpoint: process.env.CONVERTKIT_ENDPOINT,
+    },
+  });
 };
 
 module.exports = {

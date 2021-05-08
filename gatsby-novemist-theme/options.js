@@ -41,6 +41,7 @@ const TEMPLATES = {
   feedPostsPage: `${__dirname}/src/templates/feed-posts-page.tsx`,
   notePage: `${__dirname}/src/templates/note-page.tsx`,
   notesPage: `${__dirname}/src/templates/notes-page.tsx`,
+  subscriptionPage: `${__dirname}/src/templates/subscription-page.tsx`,
 };
 
 // need to merge it with /src/constants.ts PAGES_ROUTES
@@ -69,6 +70,9 @@ const PAGES_ROUTES = {
   },
   notes: {
     index: "/notes",
+  },
+  subscribe: {
+    index: "/subscribe",
   },
 };
 

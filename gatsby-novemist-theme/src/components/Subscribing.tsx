@@ -59,13 +59,8 @@ export const Subscribing = ({
               )}
               {isErrorStatus && (
                 <div className={styles.resultError}>
-                  <p>
-                    <Icon src={icons.emojiPoliceCarLight} widthSize="20px" />
-                    <i>Oops, Something went wrong! try again.</i>
-                  </p>
-                  <button className="no-style-btn" onClick={handleTryAgain}>
-                    Try again
-                  </button>
+                  <Icon src={icons.emojiPoliceCarLight} widthSize="20px" />
+                  <i>Oops, Something went wrong! Try again.</i>
                 </div>
               )}
             </div>

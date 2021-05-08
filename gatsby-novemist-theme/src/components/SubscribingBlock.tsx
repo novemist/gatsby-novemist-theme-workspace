@@ -73,15 +73,8 @@ export const SubscribingBlock: FC<SubscribingBlockProps> = ({
             <>
               <div className={styles.resultError}>
                 <Icon src={icons.emojiPoliceCarLight} widthSize="20px" />
-                <span>Oops, Something went wrong! try again.</span>
+                <span>Oops, Something went wrong! Try again.</span>
               </div>
-              <button className={styles.subscribeBtn} onClick={handleTryAgain}>
-                <span>Try again </span>
-                <Icon
-                  src={icons.emojiCounterclockwiseArrows}
-                  widthSize="20px"
-                />
-              </button>
             </>
           )}
         </div>

@@ -15,6 +15,8 @@ import emojiWaxingCrescentMoon from "../static/icons/emoji-waxing-crescent-moon.
 import emojiCounterclockwiseArrows from "../static/icons/emoji-counterclockwise-arrows.png";
 import emojiPoliceCarLight from "../static/icons/emoji-police-car-light.png";
 import emojiSparkles from "../static/icons/emoji-sparkles.png";
+import emojiLoveLetter from "../static/icons/emoji-love-letter.png";
+import emojiHouseWithGarden from "../static/icons/emoji-house-with-garden.png";
 
 export const icons = {
   twitter,
@@ -34,4 +36,6 @@ export const icons = {
   emojiCounterclockwiseArrows,
   emojiPoliceCarLight,
   emojiSparkles,
+  emojiLoveLetter,
+  emojiHouseWithGarden,
 };
