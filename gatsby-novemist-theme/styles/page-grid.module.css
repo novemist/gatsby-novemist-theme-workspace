@@ -5,6 +5,6 @@
 
 @media (max-width: 1100px) {
   .page {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
