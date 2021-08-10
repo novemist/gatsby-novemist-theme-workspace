@@ -37,6 +37,8 @@ const BlogPage = ({
   const { theme } = useTheme();
   const pagesCount = Math.ceil(allMdx.totalCount / POSTS_PER_PAGE);
 
+  console.log('BlogPage')
+
   return (
     <>
       <MainLayout title="Blog">

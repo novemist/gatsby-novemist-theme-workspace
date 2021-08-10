@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, PageProps } from "gatsby";
-import { FixedObject, FluidObject } from "gatsby-image";
+import { FluidObject } from "gatsby-image";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
 import {
@@ -49,6 +49,7 @@ interface DataType {
       imageCopyrightUrl?: string;
     };
     body: string;
+    socialCard: any;
   };
   allMdx: {
     edges: PostEdge[];
@@ -64,7 +65,7 @@ interface PageContextType {
 
 const PostPage = ({
   data: {
-    mdx: { frontmatter, body, excerpt },
+    mdx: { frontmatter, body, excerpt, ...mdx },
     allMdx,
   },
   pageContext: { utterancesConfig, convertkitEndpoint },
@@ -80,6 +81,13 @@ const PostPage = ({
     tags,
     keywords,
   } = frontmatter;
+  const {
+    childImageSharp: {
+      gatsbyImageData: {
+        images: { fallback: metaImage },
+      },
+    },
+  } = mdx?.socialCard || {};
   const goBackToUrl = type ? HOME_PAGES_TYPE_ROUTE[type] : "/";
   const goBackTitle = type ? HOME_PAGES_TYPE_TITLES[type] : "";
   const postUrl = type
@@ -92,7 +100,7 @@ const PostPage = ({
       <Container>
         <SEO
           theme={theme}
-          image={image?.childImageSharp?.resize}
+          image={image?.childImageSharp?.resize || metaImage}
           title={title}
           description={excerpt}
           keywords={keywords}
@@ -141,6 +149,11 @@ const PostPage = ({
 export const query = graphql`
   query PostPage($id: String!, $relatedPostsIds: [String]!) {
     mdx(id: { eq: $id }) {
+      socialCard {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
       excerpt(pruneLength: 160)
       frontmatter {
         slug

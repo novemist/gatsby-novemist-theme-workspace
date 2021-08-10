@@ -8,7 +8,7 @@
   "private": true,
   "workspaces": [
     "example",
-    "@kowalevski/gatsby-midnight-theme"
+    "gatsby-midnight-theme"
   ],
   "scripts": {
     "start": "yarn workspace example develop",

@@ -22,6 +22,7 @@ interface DataType {
       tags: [] | null;
       keywords: string[] | null;
     };
+    socialCard: any;
   };
 }
 
@@ -39,6 +40,13 @@ const NotePage: FC<PageProps<DataType, PageContextType>> = ({
   const { mdx } = data;
   const { title, slug, convertkitEndpoint } = pageContext;
   const postUrl = `${RESOURCES_TYPE_ROUTE.note}/${slug}`;
+  const {
+    childImageSharp: {
+      gatsbyImageData: {
+        images: { fallback: metaImage },
+      },
+    },
+  } = mdx?.socialCard || {};
 
   return (
     <MainLayout>
@@ -49,6 +57,7 @@ const NotePage: FC<PageProps<DataType, PageContextType>> = ({
           title={title || "Note"}
           description={data.mdx.excerpt}
           keywords={data.mdx.frontmatter.keywords}
+          image={metaImage}
         />
         <article>
           <GoBackTo
@@ -82,8 +91,13 @@ const NotePage: FC<PageProps<DataType, PageContextType>> = ({
 export default NotePage;
 
 export const query = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     mdx(slug: { eq: $slug }) {
+      socialCard {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
       body
       excerpt
       frontmatter {

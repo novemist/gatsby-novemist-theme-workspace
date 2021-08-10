@@ -1,6 +1,7 @@
 const fs = require("fs");
 const { createFileNodeFromBuffer } = require(`gatsby-source-filesystem`)
 const { createCanvas, loadImage, registerFont } = require('canvas');
+const format = require('date-fns/format');
 const {
     CONTENT_PATHS,
     CONTENT_REQUIRED_FILES,
@@ -10,6 +11,7 @@ const {
     POST_TYPES,
     RELATED_POSTS_COUNT,
 } = require("./options");
+const { default: slugify } = require("slugify");
 
 const UTTERANCES_CONFIG = {
     repo: process.env.UTTERANCES_REPO,
@@ -429,8 +431,7 @@ const fillText = (context, text, x, y, maxWidth, lineHeight) => {
 }
 
 const onCreateNode = async ({ node, actions, store, cache, createNodeId }) => {
-    console.log('!!!!!!!!!!!!!', node.internal.type, node?.frontmatter?.title);
-    if (node.internal.type !== 'MarkdownRemark' && node.internal.type === 'Mdx') {
+    if (node.internal.type !== 'MarkdownRemark' && node.internal.type !== 'Mdx') {
         return;
     }
 
@@ -439,8 +440,11 @@ const onCreateNode = async ({ node, actions, store, cache, createNodeId }) => {
     const logo = await loadImage('./static/images/logo.png');
     const canvas = createCanvas(1200, 600);
     const context = canvas.getContext('2d');
-    const { frontmatter: { title } } = node;
+    const { frontmatter: { title, slug, tags, date } } = node;
+    const formattedDate = date ? format(new Date(date), 'MMM d, yyyy') : null;
     const siteAddress = 'kowalevski.com';
+
+    const { createNode } = actions;
 
     // creating background and rectangle
     context.fillStyle = '#2B2A2D';
@@ -462,28 +466,40 @@ const onCreateNode = async ({ node, actions, store, cache, createNodeId }) => {
     context.fillStyle = '#aaa9b5';
     context.fillText(siteAddress, 80, 525);
 
+    // tags
+    if (tags && tags.length > 0) {
+        context.font = 'bold 22pt FiraCode';
+        context.textAlign = 'left';
+        context.fillStyle = '#d89d15';
+        const tagsText = tags.map(tag => `#${tag}`).join(' ');
+        fillText(context, tagsText, 80, 380, 900, 45);
+    }
+
+    // date
+    if (formattedDate) {
+        context.font = 'bold 20pt FiraCode';
+        context.textAlign = 'left';
+        context.fillStyle = '#E2E2E2';
+        context.fillText(formattedDate, 500, 522);           
+    }
+
     // draw image (logo-avatar)
     context.drawImage(logo, 950, 345, 200, 200);
 
     const buffer = canvas.toBuffer('image/png');
-    //fs.writeFileSync('test.png', buffer);
     let socialCardNode = await createFileNodeFromBuffer({
         buffer,
         createNodeId,
         createNode,
         cache,
-        store
+        store,
+        name: slug || slugify(title)
     });
-
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!', socialCardNode);
 
     if (socialCardNode != null) {
         node.socialCard___NODE = socialCardNode.id;
     }
-
-    //node.somethingImportant___NODE = socialCardNode.id;
 }
-
 
 module.exports = {
     onPreBootstrap,
